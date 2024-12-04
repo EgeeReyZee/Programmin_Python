@@ -1,3 +1,5 @@
+'''any% complete'''
+
 import random
 import sys
 
