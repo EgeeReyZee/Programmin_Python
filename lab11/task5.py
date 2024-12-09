@@ -11,6 +11,8 @@ points = {
     10: ['q', 'z']
 }
 
+click_count = 0
+
 layout = [
     [sg.Button('   A   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#BF0000'), border_width=(0)), sg.Button('   B   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#BF3200'), border_width=(0)), sg.Button('   C   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#BC6E00'), border_width=(0)), sg.Button('   D   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#BF9200'), border_width=(0)), sg.Text(' ', background_color=('#4C3200')), sg.Button('   E   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#BFBF00'), border_width=(0)), sg.Text(' ', background_color=('#4C3200')), sg.Button('   F   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#8CBF00'), border_width=(0)), sg.Button('   G   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#49BF00'), border_width=(0)), sg.Button('   H   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#00BF00'), border_width=(0)), sg.Button('   I   ', font=('Impact', 25), auto_size_button=('True'), button_color=('#00BF56'), border_width=(0))],
     [sg.Column([[sg.Button('   V   ', font=('Impact', 25), size=(6, 3), button_color=('#BF000C'), border_width=(0))], [sg.Button('   W   ', font=('Impact', 25), size=(6, 3), button_color=('#BF002F'), border_width=(0))], [sg.Button('   Q   ', font=('Impact', 25), size=(6, 3), button_color=('#BF0054'), border_width=(0))]], background_color=('#4C3200')), sg.Image('Информатика\lab11\letters.png', background_color=('#4C3200')), sg.Column([[sg.Button('   J   ', font=('Impact', 25), size=(6,3), button_color=('#00BF80'), border_width=(0))], [sg.Button('   K   ', font=('Impact', 25), size=(6,3), button_color=('#00BF9C'), border_width=(0))], [sg.Button('   X   ', font=('Impact', 25), size=(6,3), button_color=('#00BFB8'), border_width=(0))]], background_color=('#4C3200'))],
@@ -33,10 +35,12 @@ while True:
     total_points = 0
     if event == 'SCORING':
         if letter_list == "Сергей Демин":
+            print(letter_list)
             for i in range(10):
                 for angle in [0, 45, 90, 135, 180, 225, 270, 315]:
-                    window['-PIC-'].update(f'C:/Users/619/Desktop/СибГУТИ/Информатика/lab11/pashalkas/SD{angle}.png')
+                    window['-PIC-'].update(f"C:/Users/619/Desktop/СибГУТИ/Информатика/lab11/pashalkas/SD{angle}.png")
                     time.sleep(0.1)
+                    window.read(timeout=100)
         for letter in letter_list.lower():
             for key, val in points.items():
                 if letter in val:
@@ -56,13 +60,10 @@ while True:
         else:
             window['-PIC-'].update('')
     elif event == '   K   ':
-        if event == '   K   ':
-            if event == '   K   ':
-                while True:
-                    event2, value2 = window2.read()
-                    window2['-PASHALKA-'].update('Информатика\lab11\pashalkas\cartmanKKK.png')
-                    if event2 in (None, 'Exit'):
-                        break
+        click_count += 1
+        if click_count == 3:
+            sg.popup_animated('Информатика/lab11/pashalkas/cartmanKKK.png')
+            click_count = 0
     elif event in (None, 'Exit'):
         break
 
