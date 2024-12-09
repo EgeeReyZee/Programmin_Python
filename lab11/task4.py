@@ -9,12 +9,7 @@ layout = [
     [sg.Text(key='-out-', text_color=('#5B008C'), background_color=('#000000'), font=('Impact', 30), size=(26,1), justification=('centre'))]
 ]
 
-layout2 = [
-    [sg.Image('Информатика/lab11/pashalkas/619.png')]
-]
-
 window = sg.Window('random generator', layout, background_color=('#0f0f0f'))
-window2 = sg.Window('PASHALKA', layout2, background_color=('#000000'))
 
 while True:
     event, value = window.read()
@@ -29,11 +24,6 @@ while True:
                 window['-out-'].update('Нижняя граница должна быть меньше верхней')
         except:
             window['-out-'].update('Введите целые числа')
-        if int(value['-low-']) == 619 or int(value['-up-']) == 619 or out == 619:
-            while True:
-                event2, value2 = window2.read()
-                if event2 in (None, 'Exit'):
-                    break
-
-window2.close()
+        # if int(value['-low-']) == 619 or int(value['-up-']) == 619 or out == 619:
+        #    sg.popup_animated('C:/Users/619/Desktop/СибГУТИ/Информатика/lab11/pashalkas/619.png')
 window.close()
